@@ -1,0 +1,1 @@
+export * from './slider-vertical-section.component';

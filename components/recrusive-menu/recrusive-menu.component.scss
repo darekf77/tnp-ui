@@ -1,0 +1,16 @@
+:host {
+
+
+
+  ul {
+    // list-style: none;
+    padding-left: 15px;
+    li {
+      cursor: pointer;
+      &:hover {
+        background-color: rgba(0,0,0, 0.1)
+      }
+    }
+  }
+
+}

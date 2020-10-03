@@ -1,0 +1,13 @@
+<div class="popup-modal" >
+    <div class="popup-wrapper">
+        <div class="popup-controlPanel" draggable="true" (mousedown)="mousedown($event)" (drag)="dragging($event)">
+            <span>{{title}}</span>
+            <input type="checkbox" (change)="changePinned($event)"  [checked]="pinned"  > pin &nbsp;&nbsp;&nbsp;
+            <label style="cursor:pointer;" (click)="closePopup()">X</label>
+
+        </div>
+        <div class="popup-content">
+            <div #container ></div>
+        </div>
+    </div>
+</div>

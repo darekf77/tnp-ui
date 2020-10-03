@@ -1,0 +1,28 @@
+<ul *ngIf="items && cfilter && cfilter.props && cfilter.props.length > 0"
+    class="menu-popup-preview-project">
+  <li *ngFor="let item of items | filterBy: cfilter.props:cfilter.values"
+      (click)="onSelected(item);$event.stopPropagation()">
+    {{item[nameProperty]}}
+    <app-recrusive-menu *ngIf="item[childrenProperty]"
+                        [level]="level + 1"
+                        [filter]="filter"
+                        [nameProperty]="nameProperty"
+                        (selected)="onSelected($event)"
+                        [items]="item[childrenProperty]"></app-recrusive-menu>
+  </li>
+</ul>
+
+<ul *ngIf="items && cfilter &&  cfilter.props && cfilter.props.length === 0"
+    class="menu-popup-preview-project">
+    <!-- {{ cfilter | json}} -->
+  <li *ngFor="let item of items"
+      (click)="onSelected(item);$event.stopPropagation()">
+    {{item[nameProperty]}}
+    <app-recrusive-menu *ngIf="item[childrenProperty]"
+                        [level]="level + 1"
+                        [filter]="filter"
+                        [nameProperty]="nameProperty"
+                        (selected)="onSelected($event)"
+                        [items]="item[childrenProperty]"></app-recrusive-menu>
+  </li>
+</ul>

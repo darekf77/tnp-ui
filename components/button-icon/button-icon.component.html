@@ -1,0 +1,12 @@
+<button mat-button
+        type="button"
+        [style.color]="color"
+        (click)="onAction()"
+        [disabled]="disabled">
+  <mat-icon *ngIf="icon !== 'waiting'"
+            [style.color]="color">{{icon ? icon : 'home'}}</mat-icon>
+  <mat-spinner [style.color]="color"
+               *ngIf="icon === 'waiting'"></mat-spinner>
+  <span [style.color]="color"
+        *ngIf="icon !== 'waiting'">{{label}}</span>
+</button>

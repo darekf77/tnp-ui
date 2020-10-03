@@ -1,0 +1,35 @@
+:host {
+  display: block;
+  img {
+    vertical-align: inherit;
+  }
+
+  @import url('https://fonts.googleapis.com/css?family=Rajdhani');
+  > a {
+    left: -10px;
+    position: relative;
+    text-decoration: none !important;
+
+    &:hover {
+      text-decoration: none !important;
+    }
+
+    span {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 25px;
+      text-decoration: none !important;
+      color: rgb(37, 35, 35);
+    }
+    .logo-couple-kissing{
+      height: 20px;
+      position: relative;
+      top: 3px;
+    }
+    .logo-eiffel-tower {
+      height: 41px;
+      position: relative;
+      left: 13px;
+      top: 8px;
+    }
+  }
+}

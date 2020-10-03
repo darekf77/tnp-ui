@@ -1,0 +1,27 @@
+<div class="popup-modal"
+     #modal
+     [style.top.px]="modalTop"
+     [style.left.px]="modalLeft"
+     [style.width.px]="modalWidth"
+     [style.height.px]="modalHeight"
+
+     >
+  <div class="popup-wrapper">
+    <div class="popup-controlPanel"
+         draggable="true"
+         (drag)="dragging($event)"
+         (mousedown)="mousedown($event)"
+         (dragend)="onDragEnd($event)">
+      <span>{{title}}</span>
+      <input type="checkbox"
+             (change)="changePinned($event)"
+             [checked]="pinned"> pin &nbsp;&nbsp;&nbsp;
+      <label style="cursor:pointer;"
+             (click)="closePopup()">X</label>
+
+    </div>
+    <div class="popup-content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
