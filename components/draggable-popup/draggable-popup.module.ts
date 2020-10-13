@@ -8,6 +8,9 @@ import { CdkStepperModule } from '@angular/cdk/stepper';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 import { DraggablePopupComponent, DraggablePopupWindowComponent } from './draggable-popup.component';
 
@@ -20,6 +23,9 @@ const angularModules = [
   CdkTableModule,
   CdkTreeModule,
   MatDialogModule,
+  MatIconModule,
+  MatButtonModule,
+  MatInputModule,
 ]
 
 @NgModule({
