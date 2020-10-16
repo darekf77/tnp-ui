@@ -1,5 +1,8 @@
 import * as _ from 'lodash';
-import { Component, OnInit, ViewChild, ViewContainerRef, Input, TemplateRef, Inject, ComponentFactoryResolver, EventEmitter, Output, ElementRef, ViewEncapsulation } from '@angular/core';
+import {
+  Component, OnInit, ViewChild, ViewContainerRef, Input, TemplateRef, Inject,
+  ComponentFactoryResolver, EventEmitter, Output, ElementRef, ViewEncapsulation
+} from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LocalStorage } from 'ngx-store';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
@@ -17,23 +20,53 @@ const modalHeight = 260;
 })
 export class DraggablePopupComponent implements OnInit {
   static popups: { [id: string]: DraggablePopupComponent } = {};
+  isBeforeNgInit = true;
   @ViewChild('content') content: ElementRef;
   @Input() public id: string;
   @Input() public title = '';
-  @Output() public close = new EventEmitter();
-  @Output() public pin = new EventEmitter();
+  @Input() public isOpen: boolean;
+  @Output() public onPin = new EventEmitter();
+  @Input() pinned: boolean;
 
   @LocalStorage() public positionsById: {
     [key: string]: { left: number; top: number; }
-  } & { save: () => void; } = {} as any;
+  } & { save: () => void; };
 
   @LocalStorage() public sizeById: {
     [key: string]: { height: number; width: number; }
-  } & { save: () => void; } = {} as any;
+  } & { save: () => void; };
 
-  @LocalStorage() public pinnedById: {
-    [key: string]: boolean;
-  } & { save: () => void; } = {} as any;
+  // @LocalStorage() private pinnedById: {
+  //   [key: string]: boolean;
+  // } & { save: () => void; } = {} as any;
+
+
+  // private usePinnedValueFromStorage = true;
+  public get isPinned() {
+    return this.pinned;
+    // if (this.isBeforeNgInit) {
+    //   return this.pinned;
+    // }
+    // if(this.usePinnedValueFromStorage) {
+    //   return this.pinnedById[this.id];
+    // }
+    // return this.usePinnedValueFromStorage;
+  }
+
+  public set isPinned(v: boolean) {
+    this.pinned = v;
+    this.onPin.next(v);
+    // if (this.isBeforeNgInit) {
+    //   return;
+    // }
+    // if(this.usePinnedValueFromStorage) {
+    //   this.pinnedById[this.id] = v;
+    // } else {
+    //   // @ts-ignore
+    //   this.pinned = v;
+    // }
+    // this.onPin.next(v);
+  }
 
   public dialogRef: MatDialogRef<DraggablePopupWindowComponent>;
 
@@ -85,11 +118,21 @@ export class DraggablePopupComponent implements OnInit {
   }
 
   async ngOnInit() {
+    // if (_.isUndefined(this.pinned)) {
+    //   this.usePinnedValueFromStorage = true;
+    // }
+    this.isBeforeNgInit = false;
     const idAvailable = (!_.isNil(this.id) && !_.isObject(this.id));
-    if (idAvailable) {
-      DraggablePopupComponent.popups[this.id] = this;
+    // if (idAvailable) {
+    //   DraggablePopupComponent.popups[this.id] = this;
+    // }
+    if (this.isOpen) {
+      this.init();
     }
-    this.init();
+  }
+
+  ngOnDestroy(): void {
+    this.dialogRef?.close()
   }
 
 }
@@ -107,8 +150,8 @@ export class DraggablePopupComponent implements OnInit {
       <button mat-button type="button" style="cursor:pointer;float:right;" (click)="closePopup()">
         <mat-icon>close</mat-icon>
       </button>
-      <button *ngIf="parent.id" mat-button type="button" style="cursor:pointer;float:right;" (click)="setPinned(!parent.pinned)"  >
-            <mat-icon>{{ parent.pinned ? 'visibility': 'visibility_off' }}</mat-icon>
+      <button *ngIf="parent.id" mat-button type="button" style="cursor:pointer;float:right;" (click)="setPinned(!parent.isPinned)"  >
+            <mat-icon>{{ parent.isPinned ? 'visibility': 'visibility_off' }}</mat-icon>
       </button>
   </h1>
 <div mat-dialog-content >
@@ -150,8 +193,8 @@ export class DraggablePopupWindowComponent {
     this.dialogRef.close();
   }
   setPinned(v: boolean) {
-    if(this.parent.id) {
-      this.parent.pinnedById[this.parent.id] = v;
+    if (this.parent.id) {
+      this.parent.isPinned = v;
     }
 
   }
