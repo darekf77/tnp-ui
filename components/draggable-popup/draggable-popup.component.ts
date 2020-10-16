@@ -1,29 +1,38 @@
 import * as _ from 'lodash';
-import { Component, OnInit, ViewChild, ViewContainerRef, Input, TemplateRef, Inject, ComponentFactoryResolver, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, Input, TemplateRef, Inject, ComponentFactoryResolver, EventEmitter, Output, ElementRef, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LocalStorage } from 'ngx-store';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
+const modalPosLeft = 100;
+const modalPosTop = 100;
+const modalWidth = (window.innerWidth / 2) || 400;
+const modalHeight = 260;
+
 @Component({
   selector: 'app-draggable-popup',
   templateUrl: 'draggable-popup.component.html',
-  styleUrls: ['draggable-popup.component.css']
+  styleUrls: ['draggable-popup.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class DraggablePopupComponent implements OnInit {
   static popups: { [id: string]: DraggablePopupComponent } = {};
-  @ViewChild('popupRoot', { read: ViewContainerRef }) parent: ViewContainerRef;
-  @Input() public popupContent: TemplateRef<any>;
+  @ViewChild('content') content: ElementRef;
   @Input() public id: string;
   @Input() public title = '';
-  @LocalStorage() @Input() public pinned = false;
   @Output() public close = new EventEmitter();
   @Output() public pin = new EventEmitter();
+
   @LocalStorage() public positionsById: {
     [key: string]: { left: number; top: number; }
   } & { save: () => void; } = {} as any;
 
   @LocalStorage() public sizeById: {
     [key: string]: { height: number; width: number; }
+  } & { save: () => void; } = {} as any;
+
+  @LocalStorage() public pinnedById: {
+    [key: string]: boolean;
   } & { save: () => void; } = {} as any;
 
   public dialogRef: MatDialogRef<DraggablePopupWindowComponent>;
@@ -34,30 +43,37 @@ export class DraggablePopupComponent implements OnInit {
 
   init() {
     const localStoragePositionAvailable = this.positionsById[this.id];
-    let modalPosX = 100;
-    let modalPosY = 100;
+
+    const currentPos = {
+      modalPosLeft: modalPosLeft,
+      modalPosTop: modalPosTop
+    }
     if (localStoragePositionAvailable) {
-      modalPosX = this.positionsById[this.id].left;
-      modalPosY = this.positionsById[this.id].top;
+      currentPos.modalPosLeft = this.positionsById[this.id].left;
+      currentPos.modalPosTop = this.positionsById[this.id].top;
     }
 
     const localStorageSizeAvailable = this.sizeById[this.id];
-    let modalWidth = 400;
-    let modalHeight = 260;
+
+    const currentSize = {
+      modalHeight: modalHeight,
+      modalWidth: modalWidth,
+    }
     if (localStorageSizeAvailable) {
-      modalHeight = this.sizeById[this.id].height;
-      modalWidth = this.sizeById[this.id].width;
+      currentSize.modalHeight = this.sizeById[this.id].height;
+      currentSize.modalWidth = this.sizeById[this.id].width;
     }
 
     this.dialogRef = this.dialog.open(DraggablePopupWindowComponent, {
-      position: !localStoragePositionAvailable ? void 0 : {
-        left: `${modalPosX}px`,
-        top: `${modalPosY}px`,
+      position: {
+        left: `${currentPos.modalPosLeft}px`,
+        top: `${currentPos.modalPosTop}px`,
       },
       // height: `${modalHeight}px`,
       width: `${modalWidth}px`,
       hasBackdrop: false,
       disableClose: true,
+      panelClass: 'resizable-modal',
       data: this
     });
 
@@ -69,12 +85,11 @@ export class DraggablePopupComponent implements OnInit {
   }
 
   async ngOnInit() {
-    if (!_.isNil(this.id) && !_.isObject(this.id)) {
+    const idAvailable = (!_.isNil(this.id) && !_.isObject(this.id));
+    if (idAvailable) {
       DraggablePopupComponent.popups[this.id] = this;
     }
-    if (this.pinned) {
-      this.init();
-    }
+    this.init();
   }
 
 }
@@ -92,7 +107,7 @@ export class DraggablePopupComponent implements OnInit {
       <button mat-button type="button" style="cursor:pointer;float:right;" (click)="closePopup()">
         <mat-icon>close</mat-icon>
       </button>
-      <button mat-button type="button" style="cursor:pointer;float:right;" (click)="setPinned(!parent.pinned)"  >
+      <button *ngIf="parent.id" mat-button type="button" style="cursor:pointer;float:right;" (click)="setPinned(!parent.pinned)"  >
             <mat-icon>{{ parent.pinned ? 'visibility': 'visibility_off' }}</mat-icon>
       </button>
   </h1>
@@ -115,8 +130,16 @@ export class DraggablePopupWindowComponent {
   dropped(event: CdkDragDrop<string[]>) {
     if (this.parent.id) {
       const distance = event.distance;
-      this.parent.positionsById[this.parent.id].left = this.parent.positionsById[this.parent.id].left + distance.x;
-      this.parent.positionsById[this.parent.id].top = this.parent.positionsById[this.parent.id].top + distance.y;
+      let currentPos = this.parent.positionsById[this.parent.id];
+      if (!currentPos) {
+        this.parent.positionsById[this.parent.id] = {
+          left: modalPosLeft,
+          top: modalPosTop,
+        };
+        currentPos = this.parent.positionsById[this.parent.id];
+      }
+      this.parent.positionsById[this.parent.id].left = (currentPos.left + distance.x);
+      this.parent.positionsById[this.parent.id].top = (currentPos.top + distance.y);
       this.parent.positionsById = this.parent.positionsById;
       this.parent.positionsById.save()
     }
@@ -127,12 +150,15 @@ export class DraggablePopupWindowComponent {
     this.dialogRef.close();
   }
   setPinned(v: boolean) {
-    this.parent.pinned = v;
+    if(this.parent.id) {
+      this.parent.pinnedById[this.parent.id] = v;
+    }
+
   }
 
   ngAfterViewInit() {
     setTimeout(() => {
-      this.view.createEmbeddedView(this.parent.popupContent);
+      this.view.createEmbeddedView(this.parent.content);
     });
   }
 
