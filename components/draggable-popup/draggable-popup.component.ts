@@ -7,10 +7,32 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { LocalStorage } from 'ngx-store';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
+import { Log, Level } from 'ng2-logger';
+const log = Log.create('draggable popup component')
+
 const modalPosLeft = 100;
 const modalPosTop = 100;
 const modalWidth = (window.innerWidth / 2) || 400;
 const modalHeight = 260;
+
+export type IPosition = {
+  left: number;
+  top: number;
+
+}
+
+export type PositionType = {
+  [key: string]: IPosition;
+} & { save?: () => void; };
+
+export type ISize = {
+  height: number;
+  width: number;
+}
+
+export type SizeType = {
+  [key: string]: ISize;
+} & { save?: () => void; };
 
 @Component({
   selector: 'app-draggable-popup',
@@ -28,13 +50,8 @@ export class DraggablePopupComponent implements OnInit {
   @Output() public onPin = new EventEmitter();
   @Input() pinned: boolean;
 
-  @LocalStorage() public positionsById: {
-    [key: string]: { left: number; top: number; }
-  } & { save: () => void; };
-
-  @LocalStorage() public sizeById: {
-    [key: string]: { height: number; width: number; }
-  } & { save: () => void; };
+  @LocalStorage() public positionsById: PositionType;
+  @LocalStorage() public sizeById: SizeType;
 
   // @LocalStorage() private pinnedById: {
   //   [key: string]: boolean;
@@ -75,32 +92,27 @@ export class DraggablePopupComponent implements OnInit {
   }
 
   init() {
-    const localStoragePositionAvailable = this.positionsById[this.id];
+    log.i(`Initing with id=${this.id}`)
+    const position: IPosition = this.positionsById[this.id] ? this.positionsById[this.id] : {
+      left: modalPosLeft,
+      top: modalPosTop
+    } as any;
+    this.positionsById[this.id] = position as any;
+    this.positionsById.save();
+    log.i(`localStoragePositionAvailable`, position);
 
-    const currentPos = {
-      modalPosLeft: modalPosLeft,
-      modalPosTop: modalPosTop
-    }
-    if (localStoragePositionAvailable) {
-      currentPos.modalPosLeft = this.positionsById[this.id].left;
-      currentPos.modalPosTop = this.positionsById[this.id].top;
-    }
-
-    const localStorageSizeAvailable = this.sizeById[this.id];
-
-    const currentSize = {
-      modalHeight: modalHeight,
-      modalWidth: modalWidth,
-    }
-    if (localStorageSizeAvailable) {
-      currentSize.modalHeight = this.sizeById[this.id].height;
-      currentSize.modalWidth = this.sizeById[this.id].width;
-    }
+    const size: ISize = this.sizeById[this.id] ? this.sizeById[this.id] : {
+      x: modalWidth,
+      y: modalHeight,
+    } as any;
+    this.sizeById[this.id] = size;
+    this.sizeById.save()
+    log.i(`localStorageSizeAvailable`, size);
 
     this.dialogRef = this.dialog.open(DraggablePopupWindowComponent, {
       position: {
-        left: `${currentPos.modalPosLeft}px`,
-        top: `${currentPos.modalPosTop}px`,
+        left: `${position.left}px`,
+        top: `${position.top}px`,
       },
       // height: `${modalHeight}px`,
       width: `${modalWidth}px`,
@@ -118,6 +130,8 @@ export class DraggablePopupComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.positionsById = this.positionsById ? this.positionsById : {} as any;
+    this.sizeById = this.sizeById ? this.sizeById : {} as any;
     // if (_.isUndefined(this.pinned)) {
     //   this.usePinnedValueFromStorage = true;
     // }
@@ -171,21 +185,26 @@ export class DraggablePopupWindowComponent {
   ) { }
 
   dropped(event: CdkDragDrop<string[]>) {
-    if (this.parent.id) {
-      const distance = event.distance;
-      let currentPos = this.parent.positionsById[this.parent.id];
-      if (!currentPos) {
-        this.parent.positionsById[this.parent.id] = {
-          left: modalPosLeft,
-          top: modalPosTop,
-        };
-        currentPos = this.parent.positionsById[this.parent.id];
-      }
-      this.parent.positionsById[this.parent.id].left = (currentPos.left + distance.x);
-      this.parent.positionsById[this.parent.id].top = (currentPos.top + distance.y);
-      this.parent.positionsById = this.parent.positionsById;
-      this.parent.positionsById.save()
+    if (!this.parent.id) {
+      log.w(`no praent id... no update for local sorage values`);
+      return;
     }
+    log.i(`Updating local sorage values`)
+    const distance = event.distance;
+    let currentPos = this.parent.positionsById[this.parent.id];
+    log.i(`currentPos`, currentPos);
+    if (!currentPos) {
+      this.parent.positionsById[this.parent.id] = {
+        left: modalPosLeft,
+        top: modalPosTop,
+      };
+      currentPos = this.parent.positionsById[this.parent.id];
+    }
+    this.parent.positionsById[this.parent.id].left = (currentPos.left + distance.x);
+    this.parent.positionsById[this.parent.id].top = (currentPos.top + distance.y);
+    this.parent.positionsById = this.parent.positionsById;
+    this.parent.positionsById.save();
+    log.i(`saved position id=${this.parent.id}`, this.parent.positionsById[this.parent.id])
   }
 
   closePopup() {

@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { WebStorageModule } from 'ngx-store';
 
 import { DraggablePopupComponent, DraggablePopupWindowComponent } from './draggable-popup.component';
 
@@ -31,6 +32,7 @@ const angularModules = [
 @NgModule({
   imports: [
     CommonModule,
+    WebStorageModule,
     ...angularModules,
   ],
   exports: [
