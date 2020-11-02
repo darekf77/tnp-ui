@@ -12,8 +12,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { WebStorageModule } from 'ngx-store';
+import { ModalModule } from 'ng4-modal';
 
-import { DraggablePopupComponent, DraggablePopupWindowComponent } from './draggable-popup.component';
+import { DraggablePopupComponent } from './draggable-popup.component';
 
 const angularModules = [
   A11yModule,
@@ -33,6 +34,7 @@ const angularModules = [
   imports: [
     CommonModule,
     WebStorageModule,
+    ModalModule,
     ...angularModules,
   ],
   exports: [
@@ -41,10 +43,10 @@ const angularModules = [
   ],
   declarations: [
     DraggablePopupComponent,
-    DraggablePopupWindowComponent,
+    // DraggablePopupWindowComponent,
   ],
   entryComponents: [
-    DraggablePopupWindowComponent,
+    // DraggablePopupWindowComponent,
   ]
 })
 export class DraggablePopupModule { }

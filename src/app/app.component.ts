@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { BarService } from 'components';
 import { Router } from '@angular/router';
 
 @Component({

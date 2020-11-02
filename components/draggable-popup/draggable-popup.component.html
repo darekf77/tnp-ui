@@ -1,8 +1,37 @@
- <!-- <p>
-  draggable-popup works!
-</p> -->
-<!-- <button (click)="init();" >triger!</button> -->
-<ng-template #content>
-  <ng-content></ng-content>
-</ng-template>
-
+<app-modal #modalRoot
+           class="modal-demo"
+           appDraggable
+           (dragEnd)="dropped($event)"
+           [initialSize]="initialSize"
+           [initialPos]="initialPos"
+           (newPosition)="newPosition($event)"
+           (newSize)="newSize($event)"
+           [maximizable]="true"
+           [backdrop]="false">
+  <ng-container class="app-modal-header">{{title}}</ng-container>
+  <ng-container class="app-modal-body">
+    <p>
+      <ng-content></ng-content>
+    </p>
+  </ng-container>
+  <ng-container class="app-modal-footer">
+    <button type="button"
+            class="button button3"
+            (click)="modalRoot.hide()">Delete</button>
+    <button type="button"
+            class="button button1"
+            (click)="modalRoot.hide()">Save</button>
+    <button type="button"
+            class="button button2"
+            style="float: right;"
+            (click)="modalRoot.hide()">Close
+    </button>
+    <button *ngIf="id"
+            mat-button
+            type="button"
+            style="cursor:pointer;float:right;"
+            (click)="setPinned(!isPinned)">
+      <mat-icon>{{ isPinned ? 'visibility': 'visibility_off' }}</mat-icon>
+    </button>
+  </ng-container>
+</app-modal>

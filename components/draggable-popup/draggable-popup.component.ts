@@ -1,14 +1,15 @@
 import * as _ from 'lodash';
 import {
   Component, OnInit, ViewChild, ViewContainerRef, Input, TemplateRef, Inject,
-  ComponentFactoryResolver, EventEmitter, Output, ElementRef, ViewEncapsulation
+  ComponentFactoryResolver, EventEmitter, Output, ElementRef, ViewEncapsulation, AfterViewInit
 } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LocalStorage } from 'ngx-store';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 import { Log, Level } from 'ng2-logger';
-const log = Log.create('draggable popup component')
+import { ConfigModels } from 'tnp-config';
+const log = Log.create('draggable popup component', Level.__NOTHING)
 
 const modalPosLeft = 100;
 const modalPosTop = 100;
@@ -40,10 +41,15 @@ export type SizeType = {
   styleUrls: ['draggable-popup.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class DraggablePopupComponent implements OnInit {
+export class DraggablePopupComponent implements OnInit, AfterViewInit {
   static popups: { [id: string]: DraggablePopupComponent } = {};
   isBeforeNgInit = true;
-  @ViewChild('content') content: ElementRef;
+  // @ViewChild('content') content: ElementRef;
+  @ViewChild('modalRoot') modalRoot: {
+    show: () => any;
+    hide: () => any;
+    backdrop: boolean;
+  };
   @Input() public id: string;
   @Input() public title = '';
   @Input() public isOpen: boolean;
@@ -85,13 +91,21 @@ export class DraggablePopupComponent implements OnInit {
     // this.onPin.next(v);
   }
 
-  public dialogRef: MatDialogRef<DraggablePopupWindowComponent>;
+  // public dialogRef: MatDialogRef<DraggablePopupWindowComponent>;
 
   constructor(
     public dialog: MatDialog) {
   }
 
-  init() {
+  reset() {
+    this.positionsById[this.id] = void 0;
+    this.sizeById[this.id] = void 0;
+    this.init(false);
+  }
+
+  initialSize: ConfigModels.Size;
+  initialPos: ConfigModels.Position;
+  init(open = true) {
     log.i(`Initing with id=${this.id}`)
     const position: IPosition = this.positionsById[this.id] ? this.positionsById[this.id] : {
       left: modalPosLeft,
@@ -109,23 +123,19 @@ export class DraggablePopupComponent implements OnInit {
     this.sizeById.save()
     log.i(`localStorageSizeAvailable`, size);
 
-    this.dialogRef = this.dialog.open(DraggablePopupWindowComponent, {
-      position: {
-        left: `${position.left}px`,
-        top: `${position.top}px`,
-      },
-      // height: `${modalHeight}px`,
-      width: `${modalWidth}px`,
-      hasBackdrop: false,
-      disableClose: true,
-      panelClass: 'resizable-modal',
-      data: this
-    });
-
-
-    this.dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+    this.initialPos = {
+      x: position.left,
+      y: position.top,
+    }
+    this.initialSize = {
+      w: size.width,
+      h: size.height,
+    }
+    if (open) {
+      setTimeout(() => {
+        this.modalRoot.show();
+      });
+    }
 
   }
 
@@ -140,89 +150,57 @@ export class DraggablePopupComponent implements OnInit {
     // if (idAvailable) {
     //   DraggablePopupComponent.popups[this.id] = this;
     // }
-    if (this.isOpen) {
-      this.init();
-    }
-  }
-
-  ngOnDestroy(): void {
-    this.dialogRef?.close()
-  }
-
-}
-
-//#region popup window
-@Component({
-  selector: 'app-draggable-popup-window',
-  template: `
-
-  <h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane"
-  cdkDragHandle style="padding-right:0px;"
-   (cdkDragEnded)="dropped($event)"
-   >
-  <span>{{parent.title}}</span>
-      <button mat-button type="button" style="cursor:pointer;float:right;" (click)="closePopup()">
-        <mat-icon>close</mat-icon>
-      </button>
-      <button *ngIf="parent.id" mat-button type="button" style="cursor:pointer;float:right;" (click)="setPinned(!parent.isPinned)"  >
-            <mat-icon>{{ parent.isPinned ? 'visibility': 'visibility_off' }}</mat-icon>
-      </button>
-  </h1>
-<div mat-dialog-content >
-  <div #container ></div>
-</div>
-<div mat-dialog-actions>
-  <button mat-button cdkFocusInitial (click)="closePopup()">Close</button>
-</div>
-
-  `,
-  styles: [``],
-})
-export class DraggablePopupWindowComponent {
-  @ViewChild('container', { read: ViewContainerRef }) view;
-  constructor(public dialogRef: MatDialogRef<DraggablePopupComponent>,
-    @Inject(MAT_DIALOG_DATA) public parent: DraggablePopupComponent,
-  ) { }
-
-  dropped(event: CdkDragDrop<string[]>) {
-    if (!this.parent.id) {
-      log.w(`no praent id... no update for local sorage values`);
-      return;
-    }
-    log.i(`Updating local sorage values`)
-    const distance = event.distance;
-    let currentPos = this.parent.positionsById[this.parent.id];
-    log.i(`currentPos`, currentPos);
-    if (!currentPos) {
-      this.parent.positionsById[this.parent.id] = {
-        left: modalPosLeft,
-        top: modalPosTop,
-      };
-      currentPos = this.parent.positionsById[this.parent.id];
-    }
-    this.parent.positionsById[this.parent.id].left = (currentPos.left + distance.x);
-    this.parent.positionsById[this.parent.id].top = (currentPos.top + distance.y);
-    this.parent.positionsById = this.parent.positionsById;
-    this.parent.positionsById.save();
-    log.i(`saved position id=${this.parent.id}`, this.parent.positionsById[this.parent.id])
-  }
-
-  closePopup() {
-    this.setPinned(false);
-    this.dialogRef.close();
-  }
-  setPinned(v: boolean) {
-    if (this.parent.id) {
-      this.parent.isPinned = v;
-    }
 
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.view.createEmbeddedView(this.parent.content);
-    });
+    if (this.isOpen) {
+      setTimeout(() => {
+        this.init();
+      });
+    }
+  }
+
+  ngOnDestroy(): void {
+    // this.dialogRef?.close()
+    this.modalRoot.hide();
+  }
+
+  closePopup() {
+    this.setPinned(false);
+    this.modalRoot.hide()
+  }
+  setPinned(v: boolean) {
+    if (this.id) {
+      this.isPinned = v;
+    }
+
+  }
+
+  newSize(size: ConfigModels.Size) {
+    if (!this.id) {
+      log.w(`no praent id... no update for local sorage values`);
+      return;
+    }
+    log.i(`Updating local sorage size values`)
+    this.sizeById[this.id].width = size.w;
+    this.sizeById[this.id].height = size.h;
+    this.sizeById = this.sizeById;
+    this.sizeById.save();
+    log.i(`saved size id=${this.id}`, this.sizeById[this.id]);
+  }
+
+  newPosition(pos: ConfigModels.Position) {
+    if (!this.id) {
+      log.w(`no praent id... no update for local sorage values`);
+      return;
+    }
+    log.i(`Updating local sorage position values`)
+    this.positionsById[this.id].left = pos.x;
+    this.positionsById[this.id].top = pos.y;
+    this.positionsById = this.positionsById;
+    this.positionsById.save();
+    log.i(`saved position id=${this.id}`, this.positionsById[this.id]);
   }
 
 }
-//#endregion
