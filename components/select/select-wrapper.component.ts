@@ -60,9 +60,9 @@ export class SelectWrapperComponent extends BaseFormlyComponent implements OnIni
   // TOOD  errir ub oridyctuib TS2416:
 Property 'field' in type 'SelectWrapperComponent' is not assignable to the
 same property in base type 'BaseFormlyComponent<DualComponentController<any>>'.
-  Type 'import("/Users/dfilipiak/projects/npm/tnp-ui/node_modules/@ngx-formly
+  Type 'import('/Users/dfilipiak/projects/npm/tnp-ui/node_modules/@ngx-formly
   /core/lib/components/formly.field.config").FormlyFieldConfig'
-   is not assignable to type 'import("/Users/dfilipiak/projects/npm/tnp-helpers
+   is not assignable to type 'import('/Users/dfilipiak/projects/npm/tnp-helpers
    /node_modules/@ngx-formly/core/lib/components/formly.field.config").FormlyFieldConf
   */
   public field: FormlyFieldConfig | any;
