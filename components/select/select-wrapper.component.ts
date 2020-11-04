@@ -56,7 +56,16 @@ export class SelectWrapperComponent extends BaseFormlyComponent implements OnIni
 
   // @Input() lable: string;
 
-  public field: FormlyFieldConfig;
+  /*
+  // TOOD  errir ub oridyctuib TS2416:
+Property 'field' in type 'SelectWrapperComponent' is not assignable to the
+same property in base type 'BaseFormlyComponent<DualComponentController<any>>'.
+  Type 'import("/Users/dfilipiak/projects/npm/tnp-ui/node_modules/@ngx-formly
+  /core/lib/components/formly.field.config").FormlyFieldConfig'
+   is not assignable to type 'import("/Users/dfilipiak/projects/npm/tnp-helpers
+   /node_modules/@ngx-formly/core/lib/components/formly.field.config").FormlyFieldConf
+  */
+  public field: FormlyFieldConfig | any;
   async ngOnInit() {
 
     super.ngOnInit()
