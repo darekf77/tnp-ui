@@ -56,6 +56,8 @@
     ".gitignore": true,
     ".npmignore": true,
     ".babelrc": true,
+    "package.json_devDependencies.json": true,
+    "package.json": true,
     "docs": true,
     "logo.svg": true
   },
