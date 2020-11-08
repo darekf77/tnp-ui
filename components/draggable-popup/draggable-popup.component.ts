@@ -35,6 +35,13 @@ export type SizeType = {
   [key: string]: ISize;
 } & { save?: () => void; };
 
+import pinIcon from '@iconify/icons-mdi/pin';
+import { IconService } from 'ng4-icons';
+
+const appIcons = {
+  'bell-slash': pinIcon
+}
+
 @Component({
   selector: 'app-draggable-popup',
   templateUrl: 'draggable-popup.component.html',
@@ -42,6 +49,7 @@ export type SizeType = {
   encapsulation: ViewEncapsulation.None,
 })
 export class DraggablePopupComponent implements OnInit, AfterViewInit {
+
   static popups: { [id: string]: DraggablePopupComponent } = {};
   isBeforeNgInit = true;
   // @ViewChild('content') content: ElementRef;
@@ -94,7 +102,10 @@ export class DraggablePopupComponent implements OnInit, AfterViewInit {
   // public dialogRef: MatDialogRef<DraggablePopupWindowComponent>;
 
   constructor(
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    iconService: IconService
+  ) {
+    iconService.registerAll(appIcons);
   }
 
   reset() {
