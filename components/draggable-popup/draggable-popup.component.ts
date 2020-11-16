@@ -9,7 +9,9 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 import { Log, Level } from 'ng2-logger';
 import { ConfigModels } from 'tnp-config';
-const log = Log.create('draggable popup component', Level.__NOTHING)
+const log = Log.create('draggable popup component', Level.__NOTHING);
+
+import { mdiBell } from '@mdi/js';
 
 const modalPosLeft = 100;
 const modalPosTop = 100;
@@ -35,12 +37,6 @@ export type SizeType = {
   [key: string]: ISize;
 } & { save?: () => void; };
 
-import pinIcon from '@iconify/icons-mdi/pin';
-import { IconService } from 'ng4-icons';
-
-const appIcons = {
-  'bell-slash': pinIcon
-}
 
 @Component({
   selector: 'app-draggable-popup',
@@ -103,9 +99,9 @@ export class DraggablePopupComponent implements OnInit, AfterViewInit {
 
   constructor(
     public dialog: MatDialog,
-    iconService: IconService
+
   ) {
-    iconService.registerAll(appIcons);
+    console.log(mdiBell)
   }
 
   reset() {

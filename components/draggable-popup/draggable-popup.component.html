@@ -8,7 +8,15 @@
            (newSize)="newSize($event)"
            [maximizable]="true"
            [backdrop]="false">
-  <ng-container class="app-modal-header">{{title}}</ng-container>
+  <ng-container class="app-modal-header">
+    {{title}}
+    <ng4-icons name="home"
+              *ngIf="id"
+              mat-button
+              type="button"
+              style="cursor:pointer;float:right;"
+              (click)="setPinned(!isPinned)"></ng4-icons>
+  </ng-container>
   <ng-container class="app-modal-body">
     <p>
       <ng-content></ng-content>
@@ -25,14 +33,6 @@
             class="button button2"
             style="float: right;"
             (click)="modalRoot.hide()">Close
-    </button>
-    <button *ngIf="id"
-            mat-button
-            type="button"
-            style="cursor:pointer;float:right;"
-            (click)="setPinned(!isPinned)">
-            <ic-icon icon="bell-slash"></ic-icon>
-      <mat-icon>{{ isPinned ? 'visibility': 'visibility_off' }}</mat-icon>
     </button>
   </ng-container>
 </app-modal>
