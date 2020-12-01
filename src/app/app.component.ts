@@ -18,7 +18,7 @@ export class AppComponent {
   }
 
   aa() {
-    this.router.navigateByUrl('/aa')
+    // this.router.navigateByUrl('/aa');
   }
 
 }
