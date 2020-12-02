@@ -3,8 +3,10 @@
         [style.color]="color"
         (click)="onAction()"
         [disabled]="disabled">
-  <mat-icon *ngIf="icon !== 'waiting'"
-            [style.color]="color">{{icon ? icon : 'home'}}</mat-icon>
+  <!-- <mat-icon *ngIf="icon !== 'waiting'"
+            ></mat-icon> -->
+  <ng4-icons [style.color]="color"
+             [name]="icon"></ng4-icons>
   <mat-spinner [style.color]="color"
                *ngIf="icon === 'waiting'"></mat-spinner>
   <span [style.color]="color"

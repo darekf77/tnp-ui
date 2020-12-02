@@ -60,6 +60,12 @@ export class DraggablePopupComponent implements OnInit, AfterViewInit {
   @Output() public onPin = new EventEmitter();
   @Input() pinned: boolean;
 
+  public get height() {
+    if (this.id && this.sizeById[this.id]) {
+      return this.sizeById[this.id].height;
+    }
+  }
+
   @LocalStorage() public positionsById: PositionType;
   @LocalStorage() public sizeById: SizeType;
 

@@ -9,11 +9,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 //#endregion
+import { Ng4IconsModule } from 'ng4-icons';
 
 const materialModules = [
   MatButtonModule,
   MatIconModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  Ng4IconsModule,
 ];
 
 @NgModule({
