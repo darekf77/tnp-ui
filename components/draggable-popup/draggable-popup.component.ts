@@ -9,9 +9,9 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 import { Log, Level } from 'ng2-logger';
 import { ConfigModels } from 'tnp-config';
-const log = Log.create('draggable popup component', Level.__NOTHING);
-
-import { mdiBell } from '@mdi/js';
+const log = Log.create('draggable popup component',
+  Level.__NOTHING
+);
 
 const modalPosLeft = 100;
 const modalPosTop = 100;
@@ -107,7 +107,7 @@ export class DraggablePopupComponent implements OnInit, AfterViewInit {
     public dialog: MatDialog,
 
   ) {
-    console.log(mdiBell)
+    // console.log(mdiBell)
   }
 
   reset() {

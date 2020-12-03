@@ -10,21 +10,19 @@
            [backdrop]="false">
   <ng-container class="app-modal-header">
     {{title}}
-
+    <ng-content select=".app-custom-header"></ng-content>
   </ng-container>
   <ng-container class="app-modal-controlbar">
     <ng4-icons name="{{ isPinned ? 'pin-off': 'pin'}}"
-    *ngIf="id"
-    mat-button
-    type="button"
-    style="cursor:pointer;"
-    (click)="setPinned(!isPinned)"></ng4-icons>
+               *ngIf="id"
+               mat-button
+               type="button"
+               style="cursor:pointer;"
+               (click)="setPinned(!isPinned)"></ng4-icons>
 
   </ng-container>
   <ng-container class="app-modal-body">
-    <p>
-      <ng-content></ng-content>
-    </p>
+    <ng-content></ng-content>
   </ng-container>
   <ng-container class="app-modal-footer">
     <ng-content select=".app-custom-footer"></ng-content>
