@@ -15,6 +15,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+
 /node_modules
 /tmp*
 /dist*
@@ -72,6 +74,7 @@ Thumbs.db
 /src/polyfills.ts
 /protractor.conf.js
 /karma.conf.js
+/src/index.html
 
 
 

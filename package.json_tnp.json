@@ -23,5 +23,7 @@
   },
   "isGenerated": false,
   "useFramework": false,
-  "requiredServers": []
+  "requiredServers": [],
+  "license": "MIT",
+  "private": false
 }
