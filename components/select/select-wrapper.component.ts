@@ -5,7 +5,6 @@ import {
 import * as _ from 'lodash';
 import { Morphi } from 'morphi';
 import { Log, Level } from 'ng2-logger';
-import { Helpers } from 'morphi';
 import { BaseFormlyComponent, DualComponentController } from 'tnp-helpers';
 import { CLASS } from 'typescript-class-helpers';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';

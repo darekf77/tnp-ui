@@ -3,8 +3,6 @@ import * as _ from 'lodash';
 import { Morphi, ModelDataConfig } from 'morphi';
 
 import { Log, Level } from 'ng2-logger';
-import { Helpers } from 'morphi';
-import { Router } from '@angular/router';
 import { CLASS } from 'typescript-class-helpers';
 
 const log = Log.create('Table wrapper');

@@ -7,7 +7,6 @@ import { Log, Level } from 'ng2-logger';
 import { interpolateParamsToUrl } from 'ng2-rest';
 import { Router } from '@angular/router';
 import { isString } from 'lodash';
-import { Helpers } from 'morphi';
 
 import { BaseFormlyComponent, DualComponentController } from 'tnp-helpers';
 import { CLASS } from 'typescript-class-helpers';
