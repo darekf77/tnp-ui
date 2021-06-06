@@ -10,7 +10,8 @@
     "ignoreDepsPattern": [],
     "includeAsDev": [],
     "includeOnly": [
-      "tnp-db"
+      "tnp-db",
+      "isomorphic-storage"
     ],
     "dependencies": {},
     "linkedFolders": []

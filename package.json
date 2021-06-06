@@ -11,7 +11,8 @@
       "ignoreDepsPattern": [],
       "includeAsDev": [],
       "includeOnly": [
-        "tnp-db"
+        "tnp-db",
+        "isomorphic-storage"
       ],
       "dependencies": {},
       "linkedFolders": []
@@ -204,6 +205,7 @@
     "ngx-toastr": "^11.2.1",
     "ngx-wig": "^8.0.0",
     "node-cli-test": "0.0.2",
+    "node-cli-tester": "~0.0.3",
     "node-localstorage": "2.1.6",
     "node-notifier": "^6.0.0",
     "node-sass": "^4.7.2",
@@ -262,7 +264,7 @@
     "underscore": "^1.9.1",
     "uuid": "^8.3.2",
     "validator": "^9.2.0",
-    "vpn-split": "~0.0.4",
+    "vpn-split": "~0.0.5",
     "wait.for": "0.6.6",
     "watch": "~1.0.2",
     "webpack-cli": "3.3.11",
