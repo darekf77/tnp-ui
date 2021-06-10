@@ -4,7 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { RouterModule, Route, PreloadAllModules } from '@angular/router';
-
+import { DraggablePopupModule } from 'components';
+;
+const uiModules = [
+  DraggablePopupModule
+];
 @NgModule({
   declarations: [
     AppComponent
@@ -17,11 +21,15 @@ import { RouterModule, Route, PreloadAllModules } from '@angular/router';
         // { path: "", component: LoginComponent}
       ]
     ),
+    ...uiModules,
     // RouterModule.forRoot(routes, {
     //   useHash: true,
     //   preloadingStrategy: PreloadAllModules,
     //   enableTracing: false
     // }),
+  ],
+  exports:[
+    ...uiModules,
   ],
   providers: [],
   bootstrap: [AppComponent]

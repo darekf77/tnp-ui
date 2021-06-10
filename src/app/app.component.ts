@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import { DraggablePopupComponent } from 'components';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
+  @ViewChild('popupDrag') popupDrag: DraggablePopupComponent;
   public value: Observable<string>;
 
   constructor(
@@ -19,6 +21,10 @@ export class AppComponent {
 
   aa() {
     // this.router.navigateByUrl('/aa');
+  }
+
+  ngAfterViewInit(): void {
+    this.popupDrag.init(true);
   }
 
 }
