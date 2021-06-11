@@ -4,12 +4,12 @@
            (dragEnd)="dropped($event)"
            [initialSize]="initialSize"
            [initialPos]="initialPos"
-           (newPosition)="newPosition($event)"
-           (newSize)="newSize($event)"
+           (newPosition)="saveNewPosition($event)"
+           (newSize)="saveNewSize($event)"
            [maximizable]="true"
            [backdrop]="false">
   <ng-container class="app-modal-header">
-    {{title}}
+    {{title}}  &nbsp; <small>{{ debugInfo }}</small>
     <ng-content select=".app-custom-header"></ng-content>
   </ng-container>
   <ng-container class="app-modal-controlbar">

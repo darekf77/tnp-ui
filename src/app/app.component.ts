@@ -9,8 +9,12 @@ import { DraggablePopupComponent } from 'components';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  modalOpen = true;
   @ViewChild('popupDrag') popupDrag: DraggablePopupComponent;
+  toogleOpen() {
+    this.modalOpen = !this.modalOpen;
+  }
+
   public value: Observable<string>;
 
   constructor(
@@ -24,7 +28,7 @@ export class AppComponent {
   }
 
   ngAfterViewInit(): void {
-    this.popupDrag.init(true);
+    // this.popupDrag.init(true);
   }
 
 }

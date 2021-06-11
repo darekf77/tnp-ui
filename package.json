@@ -236,7 +236,7 @@
     "socket.io": "4.1.2",
     "sort-package-json": "1.11.0",
     "sqlite3": "4.0.9",
-    "static-columns": "1.0.17",
+    "static-columns": "~1.0.17",
     "string-similarity": "4.0.2",
     "sudo-block": "3.0.0",
     "svg-png-converter": "0.0.9",
