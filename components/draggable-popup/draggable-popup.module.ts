@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 import { WebStorageModule } from 'ngx-store';
 import { ModalModule } from 'ng4-modal';
 import { Ng4IconsModule } from 'ng4-icons';
@@ -30,6 +31,7 @@ const angularModules = [
   MatButtonModule,
   MatInputModule,
   Ng4IconsModule,
+  MatCardModule,
 ]
 
 @NgModule({

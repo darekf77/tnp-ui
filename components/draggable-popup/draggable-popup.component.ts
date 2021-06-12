@@ -15,7 +15,7 @@ import { ConfigModels } from 'tnp-config';
 //#region consts
 const debug = true;
 const log = Log.create('draggable popup component',
-  debug ? Level.INFO: Level.__NOTHING,
+  debug ? Level.INFO : Level.__NOTHING,
 );
 const modalPosLeft = 100;
 const modalPosTop = 100;
@@ -65,7 +65,7 @@ export class DraggablePopupComponent {
   }
 
   public get debugInfo() {
-    if(debug) {
+    if (debug) {
       return `(h:${this.height},w: ${this.width}, l: ${this.left}, t: ${this.top})`
     }
     return '';
@@ -113,6 +113,7 @@ export class DraggablePopupComponent {
   @Input() public id: string;
   @Input() public title = '';
   @Input() public isOpen: boolean = true;
+  @Input() public embeded = true;
   @Output() public onPin = new EventEmitter();
   @Input() pinned: boolean;
   //#endregion
@@ -146,7 +147,7 @@ export class DraggablePopupComponent {
 
   ngOnDestroy(): void {
     // this.dialogRef?.close()
-    this.modalRoot.hide();
+    this.modalRoot?.hide();
   }
   //#endregion
 
@@ -163,7 +164,7 @@ export class DraggablePopupComponent {
   //#region close
   closePopup() {
     this.setPinned(false);
-    this.modalRoot.hide()
+    this.modalRoot?.hide()
   }
   //#endregion
 
@@ -222,6 +223,9 @@ export class DraggablePopupComponent {
   //#region init
 
   private init(open = true) {
+    if (this.embeded) {
+      return;
+    }
     setTimeout(() => {
       log.i(`Initing with id=${this.id}`)
       const position: IPosition = this.positionsById[this.id] ? this.positionsById[this.id] : {
@@ -250,7 +254,7 @@ export class DraggablePopupComponent {
       }
       if (open) {
         setTimeout(() => {
-          this.modalRoot.show();
+          this.modalRoot?.show();
         });
       }
     });
