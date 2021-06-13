@@ -113,7 +113,7 @@ export class DraggablePopupComponent {
   @Input() public id: string;
   @Input() public title = '';
   @Input() public isOpen: boolean = true;
-  @Input() public embeded = true;
+  @Input() public embeded = false;
   @Output() public onPin = new EventEmitter();
   @Input() pinned: boolean;
   //#endregion

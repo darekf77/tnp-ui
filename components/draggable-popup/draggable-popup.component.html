@@ -1,7 +1,12 @@
+<ng-template #ngContent>
+  <ng-content></ng-content>
+</ng-template>
+
+
 <mat-card *ngIf="embeded">
   {{title}}
   <br>
-  <ng-content></ng-content>
+  <div [ngTemplateOutlet]="ngContent" ></div>
 </mat-card>
 
 <app-modal #modalRoot
@@ -29,7 +34,7 @@
 
   </ng-container>
   <ng-container class="app-modal-body">
-
+    <div [ngTemplateOutlet]="ngContent" ></div>
   </ng-container>
   <ng-container class="app-modal-footer">
     <ng-content select=".app-custom-footer"></ng-content>
