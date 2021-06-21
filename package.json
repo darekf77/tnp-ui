@@ -248,7 +248,7 @@
     "tnp-helpers": "~0.0.30",
     "tnp-models": "~0.0.25",
     "tnp-tools": "0.0.35",
-    "tnp-ui": "~0.0.20",
+    "tnp-ui": "~0.0.21",
     "ts-loader": "7.0.4",
     "ts-node": "8.3.0",
     "tsickle": "0.26.0",
@@ -274,5 +274,5 @@
       "pre-push": "tnp deps:show:if:standalone"
     }
   },
-  "lastBuildTagHash": "12dc97e4df4a06413c49e4c956bebde59520277f"
+  "lastBuildTagHash": "63ebe43f7c8eaecb5fd862de46058d1c86f41010"
 }
