@@ -33,8 +33,7 @@
   "version": "0.0.28",
   "license": "MIT",
   "dependencies": {
-    "tnp-db": "~0.0.32",
-    "isomorphic-storage": "~undefined"
+    "tnp-db": "~0.0.32"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.901.3",
