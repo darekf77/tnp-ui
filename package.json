@@ -240,7 +240,7 @@
     "tnp-helpers": "~0.0.70",
     "tnp-models": "~0.0.36",
     "tnp-tools": "~0.0.45",
-    "tnp-ui": "~0.0.31",
+    "tnp-ui": "~0.0.32",
     "ts-loader": "7.0.4",
     "ts-node": "8.3.0",
     "tsickle": "0.26.0",
@@ -260,5 +260,5 @@
     "zone.js": "0.10.2"
   },
   "private": false,
-  "lastBuildTagHash": "d26b3d2d8e1b934f1a1ddab1eea0ec40225a9755"
+  "lastBuildTagHash": "bf93cf5a3caf3ff976f1379ba552246053fe1dc0"
 }
