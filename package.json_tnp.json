@@ -26,5 +26,6 @@
   "useFramework": false,
   "requiredServers": [],
   "license": "MIT",
-  "private": false
+  "private": false,
+  "workerPlugins": {}
 }
