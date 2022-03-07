@@ -68,7 +68,7 @@ export class FormWrapperMaterialComponent implements OnInit, AfterViewInit {
 
   @Output() submit = new EventEmitter();
 
-  @Output() complete = new EventEmitter();
+  @Output() complete = new EventEmitter<void>();
 
   @Input() entity: Function;
 

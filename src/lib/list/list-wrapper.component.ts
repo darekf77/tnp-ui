@@ -63,7 +63,7 @@ export class DualComponentControllerExtendedForListWrapper extends DualComponent
 })
 export class ListWrapperComponent
   extends BaseFormlyComponent<DualComponentControllerExtendedForListWrapper> implements OnInit {
-
+  entity: any;
   DualComponentController = DualComponentControllerExtendedForListWrapper;
   constructor(
     private router: Router,

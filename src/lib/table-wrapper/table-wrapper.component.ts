@@ -4,6 +4,7 @@ import { Morphi, ModelDataConfig } from 'morphi';
 
 import { Log, Level } from 'ng2-logger';
 import { CLASS } from 'typescript-class-helpers';
+import { firstValueFrom  } from 'rxjs'
 
 const log = Log.create('Table wrapper');
 
@@ -76,7 +77,7 @@ export class TableWrapperComponent implements OnInit {
     }
   }
   async retriveData() {
-    const rows = await this.crud.getAll(this.arrayDataConfig).received.observable.take(1).toPromise();
+    const rows = await firstValueFrom(this.crud.getAll(this.arrayDataConfig).received.observable);
     const totalElements = Number(rows.headers.get(Morphi.SYMBOL.X_TOTAL_COUNT));
     if (!isNaN(totalElements)) {
       this.arrayDataConfig.set.pagination.totalElement(totalElements);

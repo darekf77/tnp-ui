@@ -9,6 +9,8 @@ import { BaseFormlyComponent, DualComponentController } from 'tnp-helpers';
 import { CLASS } from 'typescript-class-helpers';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { firstValueFrom } from 'rxjs';
+
 
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -77,7 +79,7 @@ same property in base type 'BaseFormlyComponent<DualComponentController<any>>'.
       this.isLoading = true;
       log.i('this.crud.entity', CLASS.describeProperites(this.crud.entity));
       try {
-        const rows = await this.crud.getAll().received.observable.take(1).toPromise();
+        const rows = await firstValueFrom(this.crud.getAll().received.observable);
         this.initOptions(rows.body.json);
         this.isLoading = false;
       } catch (error) {

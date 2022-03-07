@@ -15,8 +15,8 @@ import { FormlyMatToggleModule } from '@ngx-formly/material/toggle';
 import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormlyMatSliderModule } from '@ngx-formly/material/slider';
-import { RepeatTypeComponent } from 'morphi';
-import { FormlyHorizontalWrapper } from 'morphi';
+// import { RepeatTypeComponent } from 'morphi';  //  TODO QUICK_FIX
+ // import { FormlyHorizontalWrapper } from 'morphi'; //  TODO QUICK_FIX
 
 // custom formly components
 import { SelectWrapperModule, SelectWrapperComponent } from '../select';
@@ -43,12 +43,12 @@ export const FormlyModuleMod = FormlyModule.forRoot({
   types: [
     // { name: 'switch', component: FormlySwitchComponent },
     { name: 'iconbutton', component: IconButtonWithActionComponent },
-    { name: 'repeat', component: RepeatTypeComponent }
+    // { name: 'repeat', component: RepeatTypeComponent }  TODO QUICK_FIX
   ],
   validationMessages: [
     { name: 'required', message: 'This field is required' },
   ],
-  wrappers: [{ name: 'groupwrap', component: FormlyHorizontalWrapper }],
+  // wrappers: [{ name: 'groupwrap', component: FormlyHorizontalWrapper }],  TODO QUICK_FIX
 });
 
 const angularModules = [
@@ -86,8 +86,8 @@ const formlyModules = [
 const customComponetns = [
   FormWrapperMaterialComponent,
   IconButtonWithActionComponent,
-  RepeatTypeComponent,
-  FormlyHorizontalWrapper
+  // RepeatTypeComponent,  TODO QUICK_FIX
+  // FormlyHorizontalWrapper TODO QUICK_FIX
 ];
 
 const entityModules = [
@@ -104,6 +104,7 @@ const entityModules = [
   ],
   exports: [
     ...myFormlyModules,
+    ...materialModules,
     ...customComponetns
   ],
   declarations: [

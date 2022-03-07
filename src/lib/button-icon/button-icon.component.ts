@@ -13,7 +13,7 @@ export class ButtonIconComponent implements OnInit {
 
   @Input() color: string = void 0;
 
-  @Output() action = new EventEmitter();
+  @Output() action = new EventEmitter<void>();
 
   onAction() {
     this.action.next()
