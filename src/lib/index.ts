@@ -1,5 +1,5 @@
-import { FormlyButtionWithActionModule } from './formly-buttion-with-action/formly-buttion-with-action.module';
-import { FormlyButtionWithActionComponent } from './formly-buttion-with-action/formly-buttion-with-action.component';
+export { FormlyButtionWithActionModule } from './formly-buttion-with-action/formly-buttion-with-action.module';
+export { FormlyButtionWithActionComponent } from './formly-buttion-with-action/formly-buttion-with-action.component';
 
 export { IconButtonWithActionComponent } from './form/additional-types/formly-icon-button-with-action';
 

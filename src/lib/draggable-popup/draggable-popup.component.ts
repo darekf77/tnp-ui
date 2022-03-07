@@ -6,7 +6,7 @@ import {
   ComponentFactoryResolver, EventEmitter, Output, ElementRef, ViewEncapsulation, AfterViewInit
 } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { LocalStorage } from 'ngx-store';
+import { LocalStorage } from 'firedev-storage';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Log, Level } from 'ng2-logger';
 import { ConfigModels } from 'tnp-config';

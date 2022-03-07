@@ -12,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
-import { WebStorageModule } from 'ngx-store';
+import { WebStorageModule } from 'firedev-storage';
 import { ModalModule } from 'ng4-modal';
 import { Ng4IconsModule } from 'ng4-icons';
 
