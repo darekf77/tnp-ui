@@ -6,5 +6,6 @@
     "tnp-db": "~13.0.3"
   },
   "private": false,
-  "lastBuildTagHash": "c7aa5f5e17d72e2c16f53e301001ee2cc2537bcb"
+  "lastBuildTagHash": "c7aa5f5e17d72e2c16f53e301001ee2cc2537bcb",
+  "devDependencies": {}
 }
