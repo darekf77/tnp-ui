@@ -1,6 +1,6 @@
 {
   "name": "tnp-ui",
-  "version": "13.0.4",
+  "version": "13.0.5",
   "license": "MIT",
   "dependencies": {
     "firedev-storage": "~13.0.1",
