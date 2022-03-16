@@ -3,7 +3,12 @@
   overrided: {
     ignoreDepsPattern: [],
     includeAsDev: [],
-    includeOnly: ["tnp-db"],
+    includeOnly: [
+      "ng4-icons",
+      "ng4-modal",
+      "tnp-db",
+      "firedev-storage"
+      ],
     dependencies: {},
     linkedFolders: [],
   },
