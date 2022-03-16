@@ -1,6 +1,6 @@
 {
   "name": "tnp-ui",
-  "version": "13.0.2",
+  "version": "13.0.3",
   "license": "MIT",
   "dependencies": {
     "tnp-db": "~13.0.3"
