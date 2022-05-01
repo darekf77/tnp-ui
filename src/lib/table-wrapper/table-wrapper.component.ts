@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import * as _ from 'lodash';
-import { Morphi, ModelDataConfig } from 'morphi';
+import { Morphi } from 'morphi';
 
 import { Log, Level } from 'ng2-logger';
 import { CLASS } from 'typescript-class-helpers';
@@ -16,7 +16,7 @@ const log = Log.create('Table wrapper');
 })
 export class TableWrapperComponent implements OnInit {
 
-  @Input() arrayDataConfig = new Morphi.CRUD.ModelDataConfig();
+  @Input() arrayDataConfig : any;
 
   @Input() rowHref: string;
 

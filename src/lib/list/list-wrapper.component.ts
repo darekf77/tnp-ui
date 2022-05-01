@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, ViewChild, TemplateRef } from '@angular/core';
 import { times } from 'lodash';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Morphi, ModelDataConfig } from 'morphi';
+import { Morphi } from 'morphi';
 import { Log, Level } from 'ng2-logger';
 // @LAST prolem here
 import { interpolateParamsToUrl } from 'ng2-rest';
@@ -84,7 +84,7 @@ export class ListWrapperComponent
   @Input() lockProp = '';
   @Input() allowedColumns: string[] = [];
 
-  @Input() arrayDataConfig = new Morphi.CRUD.ModelDataConfig();
+  @Input() arrayDataConfig = {};
 
   @ViewChild('create') templateCreate: TemplateRef<any>;
   @Input() crud: Morphi.CRUD.Base<any>;

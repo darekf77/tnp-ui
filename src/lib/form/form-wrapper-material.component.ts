@@ -11,7 +11,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 // formly
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
 // other
-import { Morphi, ModelDataConfig } from 'morphi';
+import { Morphi } from 'morphi';
 import { Log, Level } from 'ng2-logger';
 import { CLASS } from 'typescript-class-helpers';
 const log = Log.create('form warpper material component');
@@ -23,7 +23,7 @@ const log = Log.create('form warpper material component');
 })
 export class FormWrapperMaterialComponent implements OnInit, AfterViewInit {
 
-  @Input() modelDataConfig = new Morphi.CRUD.ModelDataConfig();
+  @Input() modelDataConfig: any;
   @ViewChild('templateDelete') templateDelete: TemplateRef<any>;
 
   constructor(
@@ -96,7 +96,7 @@ export class FormWrapperMaterialComponent implements OnInit, AfterViewInit {
 
 
     if ((!_.isUndefined(this.id))) {
-      const m = await this.crud.getBy(this.id, this.modelDataConfig).received;
+      const m = await this.crud.getBy(this.id).received;
       this.setModel(m.body.json);
     }
 
@@ -209,7 +209,7 @@ export class FormWrapperMaterialComponent implements OnInit, AfterViewInit {
     if (this.crud) {
       if (this.mode === 'update') {
         try {
-          const m = await this.crud.updateById(id, model, this.modelDataConfig).received;
+          const m = await this.crud.updateById(id, model).received;
           log.i('Model update success', m);
           resultModel = m.body.json;
           this.submit.next(model);
@@ -219,7 +219,7 @@ export class FormWrapperMaterialComponent implements OnInit, AfterViewInit {
         }
       } else if (this.mode === 'create') {
         try {
-          const m = await this.crud.create(model, this.modelDataConfig).received;
+          const m = await this.crud.create(model).received;
           log.i('Model create success', m);
           resultModel = m.body.json;
           this.submit.next(model);
