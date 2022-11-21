@@ -9,7 +9,7 @@
     "tnp-db": "~13.1.2"
   },
   "private": false,
-  "lastBuildTagHash": "cc686662de7d0499f7d4106c3c91b72bdfef2285",
+  "lastBuildTagHash": "4a1f69908d695b08030b4960377fc48f02171866",
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.3.9",
     "@angular-devkit/core": "~13.3.9",
@@ -222,7 +222,7 @@
     "tnp-core": "~13.1.22",
     "tnp-helpers": "~13.1.2",
     "tnp-models": "~13.1.2",
-    "tnp-ui": "~13.0.20",
+    "tnp-ui": "~13.1.21",
     "ts-debug": "1.3.0",
     "ts-loader": "2.3.1",
     "ts-node": "10.7.0",
