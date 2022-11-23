@@ -1,3 +1,4 @@
+//#region @browser
 // angular
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -112,3 +113,4 @@ const entityModules = [
   ]
 })
 export class FormWrapperMaterialModule { }
+//#endregion

@@ -1,3 +1,4 @@
+//#region @browser
 import { CLASS } from 'typescript-class-helpers';
 // angular
 import { NgModule } from '@angular/core';
@@ -29,3 +30,4 @@ const angularModules = [
   declarations: [FormlyButtionWithActionComponent]
 })
 export class FormlyButtionWithActionModule { }
+//#endregion

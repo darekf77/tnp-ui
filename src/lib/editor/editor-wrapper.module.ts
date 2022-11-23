@@ -13,7 +13,7 @@ import { FormlyMatSliderModule } from '@ngx-formly/material/slider';
 // other
 import { NgxWigModule } from 'ngx-wig';
 import { CLASS } from 'typescript-class-helpers';
-//#endregion
+
 
 export const FormlyModuleMod = FormlyModule.forRoot({
   types: [
