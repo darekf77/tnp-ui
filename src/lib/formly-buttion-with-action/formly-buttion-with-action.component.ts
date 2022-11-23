@@ -1,3 +1,4 @@
+//#region @browser
 import * as _ from 'lodash';
 import { Component, OnInit } from '@angular/core';
 import { BaseFormlyComponent } from 'tnp-helpers';
@@ -29,3 +30,4 @@ export class FormlyButtionWithActionComponent  extends BaseFormlyComponent {
 
 
 }
+//#endregion

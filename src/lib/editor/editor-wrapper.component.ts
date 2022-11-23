@@ -1,3 +1,4 @@
+//#region @browser
 import { Component, OnInit, Input } from '@angular/core';
 // formly
 import { FieldType } from '@ngx-formly/core';
@@ -45,3 +46,4 @@ export class EditorWrapperComponent extends BaseFormlyComponent implements OnIni
   }
 
 }
+//#endregion

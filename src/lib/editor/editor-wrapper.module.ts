@@ -1,3 +1,4 @@
+//#region @browser
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EditorWrapperComponent } from './editor-wrapper.component';
@@ -12,7 +13,7 @@ import { FormlyMatSliderModule } from '@ngx-formly/material/slider';
 // other
 import { NgxWigModule } from 'ngx-wig';
 import { CLASS } from 'typescript-class-helpers';
-
+//#endregion
 
 export const FormlyModuleMod = FormlyModule.forRoot({
   types: [
@@ -46,3 +47,4 @@ const otherModules = [
   declarations: [EditorWrapperComponent]
 })
 export class EditorWrapperModule { }
+//#endregion

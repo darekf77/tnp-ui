@@ -1,3 +1,4 @@
+//#region @browser
 import { Component, OnInit, Input, Output, ViewChild, TemplateRef } from '@angular/core';
 import { times } from 'lodash';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -205,3 +206,4 @@ export class ListWrapperComponent
   }
 
 }
+//#endregion

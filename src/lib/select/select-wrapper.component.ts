@@ -1,4 +1,4 @@
-// angular
+//#region @browser
 import {
   Component, OnInit, Input, Output, AfterViewInit, forwardRef,
 } from '@angular/core';
@@ -105,3 +105,4 @@ same property in base type 'BaseFormlyComponent<DualComponentController<any>>'.
   }
 
 }
+//#endregion

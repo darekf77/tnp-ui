@@ -1,3 +1,4 @@
+//#region @browser
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -77,3 +78,4 @@ const formlyModules = [
   declarations: [SelectWrapperComponent]
 })
 export class SelectWrapperModule { }
+//#endregion
