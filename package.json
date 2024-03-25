@@ -23,7 +23,10 @@
       "nodts": false,
       "obscure": false,
       "ugly": false,
-      "includeNodeModules": false
+      "includeNodeModules": false,
+      "cliBuildNoDts": false,
+      "cliBuildObscure": false,
+      "cliBuildIncludeNodeModules": false
     },
     "smartContainerTarget": "",
     "type": "isomorphic-lib",
