@@ -26,7 +26,8 @@
       "includeNodeModules": false,
       "cliBuildNoDts": false,
       "cliBuildObscure": false,
-      "cliBuildIncludeNodeModules": false
+      "cliBuildIncludeNodeModules": false,
+      "cliBuildUglify": false
     },
     "smartContainerTarget": "",
     "type": "isomorphic-lib",
@@ -281,5 +282,6 @@
     "vpn-split": "~13.1.23",
     "watch": "1.0.2",
     "zone.js": "~0.11.4"
-  }
+  },
+  "main": "dist/app.electron.js"
 }
