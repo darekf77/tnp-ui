@@ -11,9 +11,14 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+app.hosts.ts
 /linked-repos
 
 /tests-environments
+/src/lib/lib-info.md
+/src/migrations/migrations-info.md
+/src/tests/mocha-tests-info.md
+/src/assets/shared/shared_folder_info.txt
 
 # System Files
 .DS_Store
@@ -39,12 +44,10 @@ Thumbs.db
 /.sass-cache
 /.sourcemaps
 /tsconfig.isomorphic.json
+/tsconfig.isomorphic-flat-dist.json
 /tsconfig.browser.json
-/.vscode/launch.json
-/.vscode/tasks.json
 /tsconfig.json
 /tsconfig.backend.dist.json
-/tsconfig.backend.bundle.json
 /.npmrc
 /tslint.json
 /.editorconfig
@@ -52,21 +55,22 @@ Thumbs.db
 /index.d.ts
 /index.js.map
 /webpack.config.js
-/webpack.backend-bundle-build.js
+/webpack.backend-dist-build.js
 /run.js
+/run-org.js
 /tsconfig.isomorphic.json.filetemplate
+/tsconfig.isomorphic-flat-dist.json.filetemplate
 /tsconfig.browser.json.filetemplate
-/.vscode/launch.json.filetemplate
-/.vscode/tasks.json.filetemplate
 /tsconfig.json.filetemplate
 /tsconfig.backend.dist.json.filetemplate
-/tsconfig.backend.bundle.json.filetemplate
-/webpack.backend-dist-build.js
 /tsconfig.backend.dist.json
-/tsconfig.backend.bundle.json
 
 
 
 
 # =====================
 *.filetemplate
+
+
+
+/.vscode/launch.json
