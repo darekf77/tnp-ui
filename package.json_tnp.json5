@@ -1,46 +1,40 @@
 {
-  resources: ["README.md"],
-
-  overrided: {
-    ignoreDepsPattern: [],
-    includeAsDev: [],
-
-    includeOnly: [
+  "resources": ["README.md"],
+  "overrided": {
+    "ignoreDepsPattern": [],
+    "includeAsDev": [],
+    "includeOnly": [
       "ng4-icons",
       "ng4-modal",
       "tnp-db",
       "firedev-storage"
       ],
-
-    dependencies: {},
-    linkedFolders: [],
-    npmFixes: [],
+    "dependencies": {},
+    "linkedFolders": [],
+    "npmFixes": [],
   },
-
-  smartContainerBuildTarget: '',
-  linkedRepos: [],
-
-  libReleaseOptions: {
-    nodts: false,
-    obscure: false,
-    ugly: false,
-    includeNodeModules: false,
-    cliBuildNoDts: false,
-    cliBuildObscure: false,
-    cliBuildIncludeNodeModules: false,
-    cliBuildUglify: false,
+  "smartContainerBuildTarget": '',
+  "linkedRepos": [],
+  "libReleaseOptions": {
+    "nodts": false,
+    "obscure": false,
+    "ugly": false,
+    "includeNodeModules": false,
+    "cliBuildNoDts": false,
+    "cliBuildObscure": false,
+    "cliBuildIncludeNodeModules": false,
+    "cliBuildUglify": false,
   },
-
-  smartContainerTarget: '',
-  type: "isomorphic-lib",
-  isCoreProject: false,
-  version: "v3",
-  additionalNpmNames: ["firedev-ui"],
-  required: [],
-  isGenerated: false,
-  useFramework: false,
-  requiredServers: [],
-  license: "MIT",
-  private: false,
-  workerPlugins: {},
+  "smartContainerTarget": '',
+  "type": "isomorphic-lib",
+  "isCoreProject": false,
+  "version": "v3",
+  "additionalNpmNames": ["firedev-ui"],
+  "required": [],
+  "isGenerated": false,
+  "useFramework": false,
+  "requiredServers": [],
+  "license": "MIT",
+  "private": false,
+  "workerPlugins": {},
 }
