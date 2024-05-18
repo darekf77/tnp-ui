@@ -1,31 +1,22 @@
 {
-  "resources": ["README.md"],
+  "resources": [],
   "overrided": {
-    "ignoreDepsPattern": [],
-    "includeAsDev": [],
-    "includeOnly": [
-      "ng4-icons",
-      "ng4-modal",
-      "tnp-db",
-      "firedev-storage"
-      ],
-    "dependencies": {},
     "linkedFolders": [],
+    "ignoreDepsPattern": [],
     "npmFixes": [],
+    "includeAsDev": [],
+    "includeOnly": [],
+    "dependencies": {}
   },
-  "smartContainerBuildTarget": '',
+  "smartContainerBuildTarget": "",
   "linkedRepos": [],
   "libReleaseOptions": {
-    "nodts": false,
-    "obscure": false,
-    "ugly": false,
-    "includeNodeModules": false,
     "cliBuildNoDts": false,
     "cliBuildObscure": false,
-    "cliBuildIncludeNodeModules": false,
     "cliBuildUglify": false,
+    "cliBuildIncludeNodeModules": false
   },
-  "smartContainerTarget": '',
+  "smartContainerTarget": "",
   "type": "isomorphic-lib",
   "isCoreProject": false,
   "version": "v3",
@@ -36,5 +27,5 @@
   "requiredServers": [],
   "license": "MIT",
   "private": false,
-  "workerPlugins": {},
+  "workerPlugins": {}
 }
