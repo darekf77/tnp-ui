@@ -33,7 +33,7 @@
     "workerPlugins": {}
   },
   "name": "tnp-ui",
-  "version": "13.1.31",
+  "version": "13.1.32",
   "license": "MIT",
   "dependencies": {
     "firedev-storage": "~13.2.37",
